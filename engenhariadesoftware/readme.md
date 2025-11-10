@@ -170,6 +170,8 @@ public class PedidoTest {
     }
 }
 ```
+![Diagrama](https://github.com/mavygarcia/bertoti/blob/main/Floricultura2.jpg)
+
 
 
 
