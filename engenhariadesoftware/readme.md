@@ -40,7 +40,7 @@ Além disso, boas práticas devem ser aplicadas para que o desenvolvimento seja 
 
 ---
 
-## 5. Código em Java
+## 🌷 5. Código em Java
 **Class Flor**
 ```Java
 import java.util.ArrayList;
@@ -170,7 +170,137 @@ public class PedidoTest {
     }
 }
 ```
+---
+## 🌷 7. Diagrama Controle de Estoque
 ![Diagrama](https://github.com/mavygarcia/bertoti/blob/main/Floricultura2.jpg)
+
+---
+## 🌸 8. Código em Java
+**Class FlorEstoque**
+```Java
+public class FlorEstoque {
+    private String nome;
+    private String tipo;
+    private double preco;
+    private int quantidade;
+
+    public FlorEstoque(String nome, String tipo, double preco, int quantidade) {
+        this.nome = nome;
+        this.tipo = tipo;
+        this.preco = preco;
+        this.quantidade = quantidade;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public double getPreco() {
+        return preco;
+    }
+
+    public int getQuantidade() {
+        return quantidade;
+    }
+
+    public void adicionar(int qtd) {
+        if (qtd > 0) {
+            quantidade += qtd;
+        }
+    }
+
+    public void remover(int qtd) {
+        if (qtd > 0 && qtd <= quantidade) {
+            quantidade -= qtd;
+        }
+    }
+}
+```
+**Class Estoque**
+```Java
+import java.util.ArrayList;
+import java.util.List;
+
+public class Estoque {
+    private List<FlorEstoque> flores = new ArrayList<>();
+
+    public void adicionarFlor(FlorEstoque flor) {
+        flores.add(flor);
+    }
+
+    public void removerFlor(String nome) {
+        flores.removeIf(f -> f.getNome().equalsIgnoreCase(nome));
+    }
+
+    public FlorEstoque buscarFlor(String nome) {
+        for (FlorEstoque f : flores) {
+            if (f.getNome().equalsIgnoreCase(nome)) {
+                return f;
+            }
+        }
+        return null;
+    }
+
+    public double calcularValorTotal() {
+        double total = 0;
+        for (FlorEstoque f : flores) {
+            total += f.getPreco() * f.getQuantidade();
+        }
+        return total;
+    }
+
+    public List<FlorEstoque> getFlores() {
+        return flores;
+    }
+}
+```
+---
+## 🌼 6. Testes JUnit
+```Java
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
+
+public class EstoqueTest {
+
+    @Test
+    public void testAdicionarERemoverFlor() {
+        Estoque estoque = new Estoque();
+        FlorEstoque flor = new FlorEstoque("Lírio", "Elegante", 12.0, 10);
+
+        estoque.adicionarFlor(flor);
+        assertEquals(1, estoque.getFlores().size());
+
+        estoque.removerFlor("Lírio");
+        assertEquals(0, estoque.getFlores().size());
+    }
+
+    @Test
+    public void testAdicionarRemoverQuantidade() {
+        FlorEstoque flor = new FlorEstoque("Orquídea", "Exótica", 20.0, 5);
+        flor.adicionar(3);
+        assertEquals(8, flor.getQuantidade());
+
+        flor.remover(2);
+        assertEquals(6, flor.getQuantidade());
+    }
+
+    @Test
+    public void testCalcularValorTotal() {
+        Estoque estoque = new Estoque();
+        estoque.adicionarFlor(new FlorEstoque("Rosa", "Romântica", 10.0, 5));
+        estoque.adicionarFlor(new FlorEstoque("Girassol", "Solar", 8.0, 3));
+
+        assertEquals(74.0, estoque.calcularValorTotal(), 0.001);
+    }
+}
+```
+
+
+
 
 
 
