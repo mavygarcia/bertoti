@@ -259,7 +259,7 @@ public class Estoque {
 }
 ```
 ---
-## 🌼 6. Testes JUnit
+## 🌼 9. Testes JUnit
 ```Java
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
@@ -298,6 +298,7 @@ public class EstoqueTest {
     }
 }
 ```
+
 
 
 
