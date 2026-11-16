@@ -1,4 +1,4 @@
-# Engenharia 3 — Minhas Contribuições
+# Engenharia 3, Contribuições:
 
 
 Este documento apresenta minhas principais contribuições nos projetos desenvolvidos na disciplina de Engenharia 3, contemplando o projeto de Design Patterns e o desenvolvimento da API.
